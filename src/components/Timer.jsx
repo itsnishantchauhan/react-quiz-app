@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
-const Timer = () => {
-    const [leftTime, setLeftTime] = useState(5);
-    const [displayTime, setDisplayTime]= useState(" ")
+const Timer = ({ setIsOver }) => {
+    const [leftTime, setLeftTime] = useState(20);
+    const [displayTime, setDisplayTime] = useState(" ")
 
     useEffect(() => {
 
@@ -18,15 +18,19 @@ const Timer = () => {
             })
 
         }, 1000)
-        
-        return ()=>{
+
+        return () => {
             clearInterval(timeIntervalId)
         }
 
     }, [])
 
-    useEffect(()=>{
-        let x= (`${Math.floor(leftTime/60).toString().padStart(2, 0)} : ${(leftTime%60).toString().padStart(2, 0)}`)
+    useEffect(() => {
+        if (leftTime === 0) {
+            setIsOver(true)
+        }
+
+        let x = (`${Math.floor(leftTime / 60).toString().padStart(2, 0)} : ${(leftTime % 60).toString().padStart(2, 0)}`)
         setDisplayTime(x)
 
     }, [leftTime])

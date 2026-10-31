@@ -1,12 +1,9 @@
 import { useState } from "react"
 import questions from "./question.json"
 
-const Question = () => {
+const Question = ({ setIsOver, setScore }) => {
 
     const [curIndx, setCurIndx] = useState(0)
-    const [score, setScore] = useState(0)
-
-    console.log(score)
 
     return (
         <div>
@@ -28,7 +25,7 @@ const Question = () => {
 
                                 if (curIndx < questions.length - 1) {
                                     setCurIndx((prev) => prev + 1)
-                                }
+                                } else { setIsOver(true) }
 
                             }}
 

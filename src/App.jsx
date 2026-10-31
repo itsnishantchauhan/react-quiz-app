@@ -2,14 +2,17 @@ import { useState } from 'react'
 import './App.css'
 import Timer from './components/Timer'
 import Question from './components/Question'
+import Result from './components/Result'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isOver, setIsOver] = useState(false)
+  const [score, setScore] = useState(0)
 
   return (
     <>
-      <Timer/>
-      <Question/>
+      
+      {isOver? (<Result score={score} />) : (<><Timer setIsOver={setIsOver}/> <Question setIsOver={setIsOver} setScore={setScore}/>  </>) }
+      
     </>
   )
 }
